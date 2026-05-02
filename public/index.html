@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECE Computer Center</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Topbar */
+        header {
+            background: #2f3241;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Menu */
+        nav {
+            display: flex;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Hamburger */
+        .menu-btn {
+            display: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: #444;
+        }
+
+        .mobile-menu a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Hero */
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(70%);
+            /* dark effect */
+        }
+
+
+        /* Text overlay */
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+        }
+
+        .btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: yellow;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Courses */
+        .courses {
+            padding: 40px;
+            text-align: center;
+            background: #eee;
+        }
+
+        .course-list span {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* MOBILE */
+        @media (max-width:768px) {
+
+            nav {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .mobile-menu.show {
+                display: flex;
+            }
+
+            .course-list span {
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">ECE Computer Center</div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="notes.html">Notes</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="notes.html">Notes</a>
+        <a href="#">Login</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="slider"></section>
+
+    <!-- Courses -->
+    <section id="courses" class="courses">
+        <h2>Our Courses</h2>
+
+        <div class="course-list">
+            <span>PGDCA</span>
+            <span>ADCA</span>
+            <span>DCA</span>
+            <span>Tally</span>
+            <span>Excel</span>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <p>📞 +91 XXXXXXXX</p>
+        <p>📧 ece@gmail.com</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        © 2026 ECE Computer Center, Kalapani
+    </footer>
+
+    <script>
+
+     let slides;
+let index = 0;
+
+async function loadSlides() {
+    let res = await fetch("/slides");
+    let data = await res.json();
+
+    let slider = document.getElementById("slider");
+
+    slider.innerHTML = "";
+
+    data.forEach((item, i) => {
+        slider.innerHTML += `
+        <div class="slide ${i === 0 ? "active" : ""}">
+            <img src="${item.image}">
+            <div class="text">
+                <h1>${item.title}</h1>
+                <p>${item.desc}</p>
+                <button class="btn">Enroll Now</button>
+            </div>
+        </div>
+        `;
+    });
+
+    slides = document.querySelectorAll(".slide");
+}
+
+function showSlide(){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[index].classList.add("active");
+}
+
+setInterval(()=>{
+    if(!slides) return;
+    index++;
+    if(index >= slides.length) index = 0;
+    showSlide();
+},3000);
+
+loadSlides();
+    </script>
+
+</body>
+
+</html>

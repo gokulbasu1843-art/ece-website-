@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h2>Add Slide</h2>
+
+<input type="file" id="file"><br><br>
+<input type="text" id="title" placeholder="Enter title"><br><br>
+<input type="text" id="desc" placeholder="Enter description"><br><br>
+
+<button onclick="upload()">Upload</button>
+
+<script>
+async function upload(){
+    let file = document.getElementById("file").files[0];
+    let title = document.getElementById("title").value;
+    let desc = document.getElementById("desc").value;
+
+    let formData = new FormData();
+    formData.append("image", file);
+    formData.append("title", title);
+    formData.append("desc", desc);
+
+    await fetch("/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    alert("Slide Added!");
+}
+</script>
+</body>
+</html>
