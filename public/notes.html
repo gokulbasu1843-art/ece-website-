@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ECE Notes</title>
+
+<style>
+body { margin:0; font-family:Arial; }
+
+/* TOP */
+.topbar {
+    background:#2d2f3a;
+    color:white;
+    padding:10px 20px;
+}
+
+/* MENU */
+.menu {
+    display:flex;
+    gap:20px;
+    padding:10px;
+    background:#f1f1f1;
+}
+
+.menu span {
+    cursor:pointer;
+    padding:5px 10px;
+}
+
+.menu span:hover {
+    background:#04AA6D;
+    color:white;
+}
+
+/* LAYOUT */
+.container { display:flex; }
+
+/* SIDEBAR */
+.sidebar {
+    width:250px;
+    background:#f8f8f8;
+    height:100vh;
+    overflow:auto;
+    border-right:1px solid #ddd;
+}
+
+.sidebar a {
+    display:block;
+    padding:10px;
+    text-decoration:none;
+    color:black;
+}
+
+.sidebar a:hover,
+.active {
+    background:#04AA6D;
+    color:white;
+}
+
+/* CONTENT */
+.content {
+    flex:1;
+    padding:30px;
+}
+
+/* IMAGE */
+.img-box {
+    text-align:center;
+    margin:20px 0;
+}
+
+.img-box img {
+    max-width:400px;
+    width:100%;
+    border-radius:10px;
+}
+
+/* BUTTON */
+.nav-btns {
+    display:flex;
+    justify-content:space-between;
+    margin-top:30px;
+}
+
+.btn {
+    background:#04AA6D;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+<h2>ECE Notes</h2>
+</div>
+
+<!-- MENU -->
+<div class="menu">
+<span onclick="loadSubject('computer')">Computer</span>
+<span onclick="loadSubject('word')">MS Word</span>
+<span onclick="loadSubject('excel')">Excel</span>
+<span onclick="loadSubject('internet')">Internet</span>
+</div>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar"></div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<div id="content"></div>
+
+<div class="nav-btns">
+<button class="btn" onclick="prevPage()">← Previous</button>
+<button class="btn" onclick="nextPage()">Next →</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// 🔥 SUBJECT DATA WITH REAL TOPIC NAMES + IMAGES
+const subjects = {
+
+computer: [
+{
+title: "Introduction",
+content: `
+<h1>Computer Fundamentals</h1>
+<p>Computer ek electronic device hai jo input leta hai aur output deta hai.</p>
+
+<h3>Features:</h3>
+<ul>
+<li>Speed</li>
+<li>Accuracy</li>
+<li>Storage</li>
+</ul>
+`
+},
+
+{
+title: "Memory",
+content: `
+<h1>Memory</h1>
+<p>Memory data store karti hai.</p>
+
+<ul>
+<li>RAM</li>
+<li>ROM</li>
+<li>HDD</li>
+<li>SSD</li>
+</ul>
+
+<div class="img-box">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Computer_memory_hierarchy.svg">
+<p>Memory Diagram</p>
+</div>
+`
+},
+
+{
+title: "CPU",
+content: `
+<h1>CPU (Central Processing Unit)</h1>
+<p>CPU computer ka brain hota hai.</p>
+
+<ul>
+<li>ALU</li>
+<li>CU</li>
+<li>Registers</li>
+</ul>
+
+<div class="img-box">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/CPU_diagram.svg">
+<p>CPU Diagram</p>
+</div>
+`
+}
+],
+
+word: [
+{
+title: "Introduction",
+content: `<h1>MS Word</h1><p>MS Word ek word processing software hai.</p>`
+}
+],
+
+excel: [
+{
+title: "Introduction",
+content: `<h1>MS Excel</h1><p>Excel spreadsheet software hai.</p>`
+}
+],
+
+internet: [
+{
+title: "Introduction",
+content: `<h1>Internet</h1><p>Internet global network hai.</p>`
+}
+]
+
+};
+
+let currentSubject = "computer";
+let current = 0;
+
+// LOAD SUBJECT
+function loadSubject(sub){
+    currentSubject = sub;
+    current = 0;
+
+    let sidebarHTML = "";
+
+    subjects[sub].forEach((item, i)=>{
+        sidebarHTML += `<a onclick="loadPage(${i})">${item.title}</a>`;
+    });
+
+    document.getElementById("sidebar").innerHTML = sidebarHTML;
+
+    loadPage(0);
+}
+
+// LOAD PAGE
+function loadPage(i){
+    current = i;
+
+    document.getElementById("content").innerHTML =
+        subjects[currentSubject][i].content;
+
+    document.querySelectorAll(".sidebar a").forEach(a=>a.classList.remove("active"));
+    document.querySelectorAll(".sidebar a")[i].classList.add("active");
+}
+
+// NEXT
+function nextPage(){
+    if(current < subjects[currentSubject].length-1){
+        loadPage(current+1);
+    }
+}
+
+// PREV
+function prevPage(){
+    if(current > 0){
+        loadPage(current-1);
+    }
+}
+
+// DEFAULT LOAD
+loadSubject("computer");
+
+</script>
+
+</body>
+</html>
