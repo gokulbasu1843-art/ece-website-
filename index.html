@@ -78,19 +78,6 @@
             overflow: hidden;
         }
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: 1s;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-
 
         .slide img {
             width: 100%;
@@ -173,6 +160,15 @@
                 width: 80%;
                 margin: 10px auto;
             }
+            .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #444;
+}
+
+.mobile-menu.show {
+    display: flex;
+}
         }
     </style>
 
@@ -202,7 +198,36 @@
     </div>
 
     <!-- Hero -->
-    <section class="hero" id="slider"></section>
+    <section class="hero">
+
+    <div class="slide active">
+        <img src="img/1.jpeg">
+        <div class="text">
+            <h1>Learn Computer Skills Easily 💻</h1>
+            <p>PGDCA | ADCA | DCA</p>
+            <button class="btn">Enroll Now</button>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="img/4.jpeg">
+        <div class="text">
+            <h1>Professional Courses</h1>
+            <p>Excel | Tally | Photoshop</p>
+            <button class="btn">Enroll Now</button>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="img/3.jpeg">
+        <div class="text">
+            <h1>Start Your Career 🚀</h1>
+            <p>Join ECE Computer Center</p>
+            <button class="btn">Enroll Now</button>
+        </div>
+    </div>
+
+</section>
 
     <!-- Courses -->
     <section id="courses" class="courses">
@@ -231,46 +256,26 @@
 
     <script>
 
-     let slides;
+    let slides = document.querySelectorAll(".slide");
 let index = 0;
-
-async function loadSlides() {
-    let res = await fetch("/slides");
-    let data = await res.json();
-
-    let slider = document.getElementById("slider");
-
-    slider.innerHTML = "";
-
-    data.forEach((item, i) => {
-        slider.innerHTML += `
-        <div class="slide ${i === 0 ? "active" : ""}">
-            <img src="${item.image}">
-            <div class="text">
-                <h1>${item.title}</h1>
-                <p>${item.desc}</p>
-                <button class="btn">Enroll Now</button>
-            </div>
-        </div>
-        `;
-    });
-
-    slides = document.querySelectorAll(".slide");
-}
 
 function showSlide(){
     slides.forEach(s => s.classList.remove("active"));
     slides[index].classList.add("active");
 }
 
+// auto slide
 setInterval(()=>{
-    if(!slides) return;
     index++;
     if(index >= slides.length) index = 0;
     showSlide();
 },3000);
 
-loadSlides();
+// mobile menu
+function toggleMenu(){
+    document.getElementById("mobileMenu").classList.toggle("show");
+}
+
     </script>
 
 </body>
