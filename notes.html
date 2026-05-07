@@ -3,135 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ECE Notes</title>
 
 <style>
-body {
+body{
     margin:0;
-    font-family: Arial;
+    font-family:Arial;
+    background:#f5f5f5;
 }
 
-/* Topbar */
-.topbar {
+/* Header */
+header{
     background:#2f3241;
     color:white;
-    padding:12px 15px;
-    display:flex;
-    align-items:center;
+    padding:15px;
+    text-align:center;
 }
 
-/* Hamburger */
-.menu-btn {
-    font-size:20px;
-    margin-right:15px;
-    cursor:pointer;
-    display:none;
+/* Grid */
+.notes-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:30px;
 }
 
-/* Title */
-.title {
-    font-size:18px;
-}
-
-/* Top Menu */
-.menu {
-    display:flex;
-    background:#ddd;
-}
-
-.menu button {
-    padding:10px 15px;
-    border:none;
-    background:none;
-    cursor:pointer;
-}
-
-.activeMenu {
-    background:#ccc;
-}
-
-/* Layout */
-.container {
-    display:flex;
-    height:calc(100vh - 90px);
-}
-
-/* Sidebar */
-.sidebar {
-    width:200px;
-    background:#eee;
-    border-right:1px solid #ccc;
+/* Card */
+.note-card{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    text-align:center;
     transition:0.3s;
 }
 
-.sidebar button {
-    width:100%;
-    padding:12px;
-    border:none;
-    background:none;
-    text-align:left;
-    cursor:pointer;
+.note-card:hover{
+    transform:translateY(-5px);
 }
 
-.sidebar button:hover,
-.active {
-    background:#0ea56b;
-    color:white;
-}
-
-/* Content */
-.content {
-    flex:1;
-    padding:20px;
-    overflow:auto;
-}
-
-/* Buttons */
-.nav-btns {
-    display:flex;
-    justify-content:space-between;
-    margin-top:30px;
-}
-
-.btn {
+/* Button */
+.btn{
+    display:inline-block;
+    margin-top:10px;
     padding:10px 20px;
     background:#0ea56b;
     color:white;
-    border:none;
-    cursor:pointer;
-}
-
-/* MOBILE */
-@media (max-width:768px){
-
-    .menu-btn {
-        display:block;
-    }
-
-    .container {
-        flex-direction:column;
-        height:auto;
-    }
-
-    .sidebar {
-        position:fixed;
-        top:50px;
-        left:-220px;
-        height:100%;
-        z-index:1000;
-    }
-
-    .sidebar.show {
-        left:0;
-    }
-
-    .menu {
-        overflow-x:auto;
-    }
-
-    .content {
-        padding:15px;
-    }
+    text-decoration:none;
+    border-radius:5px;
 }
 </style>
 
@@ -139,135 +59,37 @@ body {
 
 <body>
 
-<!-- Topbar -->
-<div class="topbar">
-    <span class="menu-btn" onclick="toggleMenu()">☰</span>
-    <span class="title">ECE Notes</span>
+<header>
+    <h1>ECE Notes</h1>
+</header>
+
+<div class="notes-container">
+
+    <div class="note-card">
+        <h2>Computer Fundamentals</h2>
+        <p>Basic computer notes PDF</p>
+        <a href="notes/computer.pdf" class="btn" target="_blank">
+            Open PDF
+        </a>
+    </div>
+
+    <div class="note-card">
+        <h2>MS Word</h2>
+        <p>MS Word complete notes</p>
+        <a href="notes/msword.pdf" class="btn" target="_blank">
+            Open PDF
+        </a>
+    </div>
+
+    <div class="note-card">
+        <h2>MS Excel</h2>
+        <p>Excel formulas and basics</p>
+        <a href="notes/excel.pdf" class="btn" target="_blank">
+            Open PDF
+        </a>
+    </div>
+
 </div>
-
-<!-- Top Menu -->
-<div class="menu">
-    <button onclick="setCategory(0)" class="activeMenu">Computer</button>
-    <button onclick="setCategory(1)">MS Word</button>
-    <button onclick="setCategory(2)">Excel</button>
-    <button onclick="setCategory(3)">Internet</button>
-</div>
-
-<div class="container">
-
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar"></div>
-
-<!-- Content -->
-<div class="content">
-
-<div id="content"></div>
-
-<div class="nav-btns">
-<button class="btn" onclick="prevPage()">← Previous</button>
-<button class="btn" onclick="nextPage()">Next →</button>
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-// DATA
-const data = [
-
-[
-{title:"Introduction", content:`<h1>Computer Fundamentals</h1>
-<p></p>`},
-
-{title:"Memory", content:`<h1>Memory</h1><p>Memory data store karti hai.</p>`},
-
-{title:"CPU", content:`<h1>CPU</h1><p>CPU computer ka brain hota hai.</p>`}
-],
-
-[
-{title:"Word Intro", content:`<h1>MS Word</h1><p></p>`},
-
-{title:"Formatting", content:`<h1>Formatting</h1><p>Bold, Italic, Font size change karna formatting hai.</p>`}
-],
-
-[
-{title:"Excel Intro", content:`<h1>Excel</h1><p></p>`}
-],
-
-[
-{title:"Internet", content:`<h1>Internet</h1><p></p>`}
-]
-
-];
-
-let currentCategory = 0;
-let currentPage = 0;
-
-// Sidebar
-function loadSidebar(){
-    let sidebar = document.getElementById("sidebar");
-    sidebar.innerHTML = "";
-
-    data[currentCategory].forEach((item,i)=>{
-        let btn = document.createElement("button");
-        btn.innerText = item.title;
-        btn.onclick = ()=>loadPage(i);
-
-        if(i === currentPage) btn.classList.add("active");
-
-        sidebar.appendChild(btn);
-    });
-}
-
-// Load content
-function loadPage(i){
-    currentPage = i;
-    document.getElementById("content").innerHTML =
-        data[currentCategory][i].content;
-
-    loadSidebar();
-
-    // mobile pe menu band
-    document.getElementById("sidebar").classList.remove("show");
-}
-
-// Category
-function setCategory(i){
-    currentCategory = i;
-    currentPage = 0;
-
-    document.querySelectorAll(".menu button")
-        .forEach(b=>b.classList.remove("activeMenu"));
-
-    event.target.classList.add("activeMenu");
-
-    loadSidebar();
-    loadPage(0);
-}
-
-// Toggle sidebar (mobile)
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("show");
-}
-
-// Next/Prev
-function nextPage(){
-    if(currentPage < data[currentCategory].length-1)
-        loadPage(currentPage+1);
-}
-
-function prevPage(){
-    if(currentPage > 0)
-        loadPage(currentPage-1);
-}
-
-// Init
-loadSidebar();
-loadPage(0);
-
-</script>
 
 </body>
 </html>
