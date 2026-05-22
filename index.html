@@ -6,60 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECE Computer Center</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
-        /* Topbar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f7fb;
+        }
+
+        /* HEADER */
+
         header {
-            background: #2f3241;
-            color: white;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
+            position: fixed;
+            z-index: 1000;
         }
 
-        /* Logo */
         .logo {
-            font-size: 18px;
-            font-weight: bold;
+            color: #38bdf8;
+            font-size: 24px;
+            font-weight: 700;
         }
 
-        /* Menu */
         nav {
             display: flex;
+            gap: 25px;
         }
 
         nav a {
-            margin-left: 20px;
-            text-decoration: none;
             color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 15px;
         }
 
-        /* Hamburger */
+        nav a:hover {
+            color: #38bdf8;
+        }
+
         .menu-btn {
-            display: none;
-            font-size: 20px;
+            color: white;
+            font-size: 28px;
             cursor: pointer;
+            display: none;
         }
 
-        /* Mobile Menu */
+        /* MOBILE MENU */
+
         .mobile-menu {
-            display: none;
+            position: fixed;
+            top: 70px;
+            right: -100%;
+            width: 250px;
+            height: 100vh;
+            background: #111827;
+            display: flex;
             flex-direction: column;
-            background: #444;
+            transition: 0.4s;
+            z-index: 999;
         }
 
         .mobile-menu a {
-            padding: 10px;
             color: white;
             text-decoration: none;
+            padding: 18px;
+            border-bottom: 1px solid #333;
         }
 
-        /* Hero */
+        .mobile-menu.show {
+            right: 0;
+        }
+
+        /* HERO */
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
         .slide {
             position: absolute;
             width: 100%;
@@ -72,222 +112,381 @@
             opacity: 1;
         }
 
-        .hero {
-            position: relative;
-            height: 400px;
-            overflow: hidden;
-        }
-
-
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(70%);
-            /* dark effect */
+            filter: brightness(45%);
         }
 
-
-        /* Text overlay */
         .text {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 8%;
+            transform: translateY(-50%);
             color: white;
-            text-align: center;
+            max-width: 600px;
         }
 
-        .hero h1 {
-            font-size: 28px;
+        .text h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .text p {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #ddd;
         }
 
         .btn {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: yellow;
+            padding: 14px 30px;
             border: none;
+            border-radius: 30px;
+            background: #38bdf8;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
         }
 
-        /* Courses */
+        .btn:hover {
+            background: #0ea5e9;
+            transform: scale(1.05);
+        }
+
+        /* COURSES */
+
         .courses {
-            padding: 40px;
+            padding: 100px 7%;
             text-align: center;
-            background: #eee;
         }
 
-        .course-list span {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
+        .title {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            color: gray;
+            margin-bottom: 50px;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .course-card {
             background: white;
+            padding: 35px 25px;
             border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
         }
 
-        /* Contact */
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .course-card .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .course-card h3 {
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .course-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            padding: 100px 7%;
+            background: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .about-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* CONTACT */
+
         .contact {
-            padding: 30px;
-            text-align: center;
-        }
-
-        /* Footer */
-        footer {
-            background: #111;
+            background: #0f172a;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 90px 7%;
+        }
+
+        .contact h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            margin: 12px 0;
+            font-size: 18px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #020617;
+            color: #aaa;
+            text-align: center;
+            padding: 18px;
         }
 
         /* MOBILE */
-        @media (max-width:768px) {
+
+        @media(max-width:768px) {
 
             nav {
                 display: none;
             }
-              .hero {
-       height: 30vh;
-    }
+
             .menu-btn {
                 display: block;
             }
 
-            .mobile-menu.show {
-                display: flex;
+            .hero {
+                height: 75vh;
             }
 
-            .course-list span {
-                display: block;
-                width: 80%;
-                margin: 10px auto;
+            .text {
+                left: 5%;
+                right: 5%;
             }
-            .mobile-menu {
-    display: none;
-    flex-direction: column;
-    background: #444;
-}
 
-.mobile-menu.show {
-    display: flex;
-}
-  .hero h1 {
-        font-size: 18px;
-    }
+            .text h1 {
+                font-size: 34px;
+            }
 
-    .text p {
-        font-size: 12px;
-    }
+            .text p {
+                font-size: 14px;
+            }
 
-    .btn {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .title,
+            .about-text h2,
+            .contact h2 {
+                font-size: 30px;
+            }
         }
     </style>
-
 </head>
 
 <body>
 
-    <!-- Header -->
+    <!-- HEADER -->
+
     <header>
+
         <div class="logo">ECE Computer Center</div>
-        <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
         <nav>
             <a href="#">Home</a>
             <a href="#courses">Courses</a>
-            <a href="notes.html">Notes</a>
-            <a href="#">Login</a>
+            <a href="#about">About</a>
+            <a href="#">Notes</a>
+            <a href="#contact">Contact</a>
         </nav>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- MOBILE MENU -->
+
     <div class="mobile-menu" id="mobileMenu">
         <a href="#">Home</a>
         <a href="#courses">Courses</a>
-        <a href="notes.html">Notes</a>
-        <a href="#">Login</a>
+        <a href="#about">About</a>
+        <a href="#">Notes</a>
+        <a href="#contact">Contact</a>
     </div>
 
-    <!-- Hero -->
+    <!-- HERO -->
+
     <section class="hero">
 
-    <div class="slide active">
-        <img src="img/">
-        <div class="text">
-            <h1>Learn Computer Skills Easily 💻</h1>
-            <p>PGDCA | ADCA | DCA</p>
-            <button class="btn">Enroll Now</button>
+        <div class="slide active">
+
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="text">
+                <h1>Learn Computer Skills Easily 💻</h1>
+                <p>PGDCA | ADCA | DCA | Professional Training</p>
+                <button class="btn">Enroll Now</button>
+            </div>
+
         </div>
-    </div>
 
-    <div class="slide">
-        <img src="img">
-        <div class="text">
-            <h1>Professional Courses</h1>
-            <p>Excel | Tally | Photoshop</p>
-            <button class="btn">Enroll Now</button>
+        <div class="slide">
+
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="text">
+                <h1>Professional Courses 🚀</h1>
+                <p>Excel | Tally | Photoshop | Web Design</p>
+                <button class="btn">Start Learning</button>
+            </div>
+
         </div>
-    </div>
 
-    <div class="slide">
-        <img src="img/">
-        <div class="text">
-            <h1>Start Your Career 🚀</h1>
-            <p>Join ECE Computer Center</p>
-            <button class="btn">Enroll Now</button>
+        <div class="slide">
+
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="text">
+                <h1>Build Your Bright Career ✨</h1>
+                <p>Join ECE Computer Center Today</p>
+                <button class="btn">Join Now</button>
+            </div>
+
         </div>
-    </div>
 
-</section>
-
-    <!-- Courses -->
-    <section id="courses" class="courses">
-        <h2>Our Courses</h2>
-
-        <div class="course-list">
-            <span>PGDCA</span>
-            <span>ADCA</span>
-            <span>DCA</span>
-            <span>Tally</span>
-            <span>Excel</span>
-        </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <p>📞 +91 8453670810 / 6000181843</p>
+    <!-- COURSES -->
+
+    <section class="courses" id="courses">
+
+        <h2 class="title">Our Courses</h2>
+        <p class="subtitle">Best Computer Courses Available Here</p>
+
+        <div class="course-grid">
+
+            <div class="course-card">
+                <div class="icon">💻</div>
+                <h3>PGDCA</h3>
+                <p>Professional Diploma in Computer Application.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">🖥️</div>
+                <h3>ADCA</h3>
+                <p>Advanced Diploma in Computer Application.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">📊</div>
+                <h3>Excel</h3>
+                <p>Advanced Excel with practical projects.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">🧾</div>
+                <h3>Tally Prime</h3>
+                <p>GST & Accounting Training with Tally.</p>
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- Footer -->
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="about-text">
+
+            <h2>Why Choose Us?</h2>
+
+            <p>
+                ECE Computer Center provides high quality computer education with practical knowledge.
+                We help students improve their computer skills and build successful careers.
+                Experienced teachers, modern labs and friendly environment make learning easy and enjoyable.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+        <h2>Contact Us 📞</h2>
+
+        <p>📱 +91 8453670810</p>
+        <p>📱 +91 6000181843</p>
+        <p>📍 Kalapani</p>
+
+    </section>
+
+    <!-- FOOTER -->
+
     <footer>
-        © 2026 ECE Computer Center, Kalapani
+        © 2026 ECE Computer Center | All Rights Reserved
     </footer>
+
+    <!-- JAVASCRIPT -->
 
     <script>
 
-    let slides = document.querySelectorAll(".slide");
-let index = 0;
+        // HERO SLIDER
 
-function showSlide(){
-    slides.forEach(s => s.classList.remove("active"));
-    slides[index].classList.add("active");
-}
+        let slides = document.querySelectorAll(".slide");
+        let index = 0;
 
-// auto slide
-setInterval(()=>{
-    index++;
-    if(index >= slides.length) index = 0;
-    showSlide();
-},3000);
+        function showSlide() {
 
-// mobile menu
-function toggleMenu(){
-    document.getElementById("mobileMenu").classList.toggle("show");
-}
+            slides.forEach(slide => {
+                slide.classList.remove("active");
+            });
+
+            slides[index].classList.add("active");
+        }
+
+        setInterval(() => {
+
+            index++;
+
+            if (index >= slides.length) {
+                index = 0;
+            }
+
+            showSlide();
+
+        }, 4000);
+
+        // MOBILE MENU
+
+        function toggleMenu() {
+            document.getElementById("mobileMenu").classList.toggle("show");
+        }
 
     </script>
 
