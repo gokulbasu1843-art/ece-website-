@@ -48,6 +48,7 @@
             position:fixed;
             top:0;
             left:0;
+
             z-index:1000;
 
             background:rgba(15,23,42,0.85);
@@ -69,7 +70,9 @@
         nav a{
             text-decoration:none;
             color:white;
+
             transition:.3s;
+
             font-size:15px;
             font-weight:500;
         }
@@ -91,6 +94,7 @@
 
         .mobile-menu{
             position:fixed;
+
             top:70px;
             right:-100%;
 
@@ -226,13 +230,17 @@
         .title{
             font-size:45px;
             margin-bottom:12px;
+
             color:#0f172a;
+
             text-align:center;
         }
 
         .subtitle{
             color:#64748b;
+
             margin-bottom:50px;
+
             text-align:center;
         }
 
@@ -292,6 +300,7 @@
 
         .notes{
             padding:110px 7%;
+
             background:white;
         }
 
@@ -412,6 +421,7 @@
         .contact p{
             font-size:18px;
             margin:12px 0;
+
             color:#d1d5db;
         }
 
@@ -513,6 +523,82 @@
         }
 
         /* =========================
+           ADMIN BUTTON
+        ========================= */
+
+        .admin-btn{
+            margin:30px auto;
+
+            display:block;
+
+            padding:14px 28px;
+
+            border:none;
+
+            background:#0f172a;
+            color:white;
+
+            border-radius:40px;
+
+            cursor:pointer;
+
+            font-size:15px;
+
+            transition:.3s;
+        }
+
+        .admin-btn:hover{
+            background:#1e293b;
+        }
+
+        /* =========================
+           STUDENT DATABASE
+        ========================= */
+
+        .student-data{
+            width:90%;
+            max-width:900px;
+
+            margin:40px auto;
+
+            background:white;
+
+            padding:30px;
+
+            border-radius:20px;
+
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+            display:none;
+        }
+
+        .student-data h2{
+            margin-bottom:25px;
+            text-align:center;
+        }
+
+        .student-data table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        .student-data th{
+            background:#38bdf8;
+            color:white;
+        }
+
+        .student-data th,
+        .student-data td{
+            padding:14px;
+            border:1px solid #ddd;
+            text-align:center;
+        }
+
+        .student-data tr:nth-child(even){
+            background:#f8fafc;
+        }
+
+        /* =========================
            MOBILE
         ========================= */
 
@@ -561,6 +647,14 @@
                 font-size:32px;
             }
 
+            .student-data{
+                overflow-x:auto;
+            }
+
+            .student-data table{
+                min-width:600px;
+            }
+
         }
 
         @media(max-width:480px){
@@ -590,7 +684,9 @@
     <header>
 
         <div class="logo">
+
             ECE Computer Center
+
         </div>
 
         <nav>
@@ -661,11 +757,15 @@
         id="courses">
 
         <h2 class="title">
+
             Our Courses
+
         </h2>
 
         <p class="subtitle">
+
             Professional Computer Courses
+
         </p>
 
         <div class="course-grid">
@@ -728,11 +828,15 @@
         id="notes">
 
         <h2 class="title">
+
             Student Notes 📚
+
         </h2>
 
         <p class="subtitle">
+
             Create Account Once & View Notes Using Note ID
+
         </p>
 
         <div class="notes-grid">
@@ -742,11 +846,15 @@
                 <div class="note-icon">📘</div>
 
                 <h3>
+
                     Computer Fundamentals
+
                 </h3>
 
                 <p>
+
                     Note ID : CF101
+
                 </p>
 
                 <button class="view-btn"
@@ -763,11 +871,15 @@
                 <div class="note-icon">📗</div>
 
                 <h3>
+
                     MS Excel Notes
+
                 </h3>
 
                 <p>
+
                     Note ID : EX202
+
                 </p>
 
                 <button class="view-btn"
@@ -784,11 +896,15 @@
                 <div class="note-icon">📕</div>
 
                 <h3>
+
                     Tally Prime Notes
+
                 </h3>
 
                 <p>
+
                     Note ID : TP303
+
                 </p>
 
                 <button class="view-btn"
@@ -804,17 +920,65 @@
 
     </section>
 
+    <!-- ADMIN BUTTON -->
+
+    <button class="admin-btn"
+        onclick="showStudents()">
+
+        View Student Database
+
+    </button>
+
+    <!-- STUDENT DATABASE -->
+
+    <div class="student-data"
+        id="studentData">
+
+        <h2>
+
+            Registered Students 📚
+
+        </h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Password</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="studentTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
     <!-- GALLERY -->
 
     <section class="gallery"
         id="gallery">
 
         <h2 class="title">
+
             Our Gallery 📸
+
         </h2>
 
         <p class="subtitle">
+
             Computer Lab & Student Activities
+
         </p>
 
         <div class="gallery-grid">
@@ -835,19 +999,27 @@
         id="contact">
 
         <h2>
+
             Contact Us 📞
+
         </h2>
 
         <p>
+
             📱 +91 8453670810
+
         </p>
 
         <p>
+
             📱 +91 6000181843
+
         </p>
 
         <p>
+
             📍 Kalapani
+
         </p>
 
     </section>
@@ -876,7 +1048,9 @@
             </span>
 
             <h2>
+
                 Create Student Account 🔐
+
             </h2>
 
             <input type="text"
@@ -916,7 +1090,9 @@
             </span>
 
             <h2>
+
                 Enter Note ID 📚
+
             </h2>
 
             <input type="text"
@@ -1056,9 +1232,7 @@
             currentNote = noteId;
 
             let account =
-            localStorage.getItem("studentAccount");
-
-            // IF ACCOUNT NOT CREATED
+            localStorage.getItem("students");
 
             if(!account){
 
@@ -1066,8 +1240,6 @@
                 .style.display = "flex";
 
             }
-
-            // IF ACCOUNT EXISTS
 
             else{
 
@@ -1096,8 +1268,6 @@
             document.getElementById("studentPassword")
             .value;
 
-            // EMPTY CHECK
-
             if(name === "" ||
                email === "" ||
                password === ""){
@@ -1108,7 +1278,9 @@
 
             }
 
-            // SAVE DATA
+            let students =
+            JSON.parse(localStorage.getItem("students"))
+            || [];
 
             let studentData = {
 
@@ -1118,11 +1290,13 @@
 
             };
 
+            students.push(studentData);
+
             localStorage.setItem(
 
-                "studentAccount",
+                "students",
 
-                JSON.stringify(studentData)
+                JSON.stringify(students)
 
             );
 
@@ -1131,8 +1305,6 @@
             );
 
             closeRegister();
-
-            // OPEN NOTE BOX
 
             document.getElementById("noteBox")
             .style.display = "flex";
@@ -1155,8 +1327,6 @@
                     "Opening Notes : " + currentNote
                 );
 
-                // OPEN NOTE PAGE
-
                 window.location.href =
 
                 "notes/" + currentNote + ".html";
@@ -1168,6 +1338,44 @@
                 alert("Invalid Note ID ❌");
 
             }
+
+        }
+
+        // =========================
+        // SHOW STUDENTS
+        // =========================
+
+        function showStudents(){
+
+            let students =
+            JSON.parse(localStorage.getItem("students"))
+            || [];
+
+            let table =
+            document.getElementById("studentTable");
+
+            table.innerHTML = "";
+
+            students.forEach(student => {
+
+                table.innerHTML += `
+
+                <tr>
+
+                    <td>${student.name}</td>
+
+                    <td>${student.email}</td>
+
+                    <td>${student.password}</td>
+
+                </tr>
+
+                `;
+
+            });
+
+            document.getElementById("studentData")
+            .style.display = "block";
 
         }
 
