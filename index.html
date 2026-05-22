@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
@@ -39,6 +40,7 @@
         header{
             width:100%;
             padding:15px 7%;
+
             display:flex;
             justify-content:space-between;
             align-items:center;
@@ -49,6 +51,7 @@
             z-index:1000;
 
             background:rgba(15,23,42,0.85);
+
             backdrop-filter:blur(10px);
         }
 
@@ -90,21 +93,26 @@
             position:fixed;
             top:70px;
             right:-100%;
+
             width:260px;
             height:100vh;
+
             background:#0f172a;
 
             display:flex;
             flex-direction:column;
 
             transition:.4s;
+
             z-index:999;
         }
 
         .mobile-menu a{
             color:white;
             text-decoration:none;
+
             padding:18px 25px;
+
             border-bottom:1px solid rgba(255,255,255,0.08);
         }
 
@@ -119,15 +127,20 @@
         .hero{
             width:100%;
             height:100vh;
+
             position:relative;
+
             overflow:hidden;
         }
 
         .slide{
             position:absolute;
+
             width:100%;
             height:100%;
+
             opacity:0;
+
             transition:1s;
         }
 
@@ -138,26 +151,37 @@
         .slide img{
             width:100%;
             height:100%;
+
             object-fit:cover;
+
             filter:brightness(35%);
         }
 
         .overlay{
             position:absolute;
+
             width:100%;
             height:100%;
-            background:linear-gradient(to right,
+
+            background:linear-gradient(
+            to right,
             rgba(0,0,0,0.7),
-            rgba(0,0,0,0.2));
+            rgba(0,0,0,0.2)
+            );
         }
 
         .text{
             position:absolute;
+
             top:50%;
             left:7%;
+
             transform:translateY(-50%);
+
             color:white;
+
             max-width:650px;
+
             z-index:2;
         }
 
@@ -175,13 +199,18 @@
 
         .btn{
             padding:15px 35px;
+
             border:none;
             border-radius:50px;
+
             background:#38bdf8;
             color:white;
+
             font-size:16px;
             font-weight:600;
+
             cursor:pointer;
+
             transition:.3s;
         }
 
@@ -217,16 +246,24 @@
 
         .course-grid{
             display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(250px,1fr));
+
             gap:28px;
         }
 
         .course-card{
             background:white;
+
             padding:40px 28px;
+
             border-radius:22px;
+
             box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
             transition:.4s;
+
             text-align:center;
         }
 
@@ -260,16 +297,24 @@
 
         .notes-grid{
             display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(250px,1fr));
+
             gap:28px;
+
             margin-top:50px;
         }
 
         .note-card{
             background:#f1f5f9;
+
             padding:40px 28px;
+
             border-radius:22px;
+
             text-align:center;
+
             transition:.4s;
         }
 
@@ -294,11 +339,16 @@
 
         .view-btn{
             padding:12px 24px;
+
             border:none;
+
             background:#38bdf8;
             color:white;
+
             border-radius:40px;
+
             cursor:pointer;
+
             transition:.3s;
         }
 
@@ -316,16 +366,23 @@
 
         .gallery-grid{
             display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(220px,1fr));
+
             gap:16px;
+
             margin-top:40px;
         }
 
         .gallery-grid img{
             width:100%;
             height:180px;
+
             object-fit:cover;
+
             border-radius:16px;
+
             transition:.4s;
         }
 
@@ -339,8 +396,11 @@
 
         .contact{
             background:#0f172a;
+
             color:white;
+
             text-align:center;
+
             padding:100px 7%;
         }
 
@@ -361,24 +421,31 @@
 
         footer{
             background:#020617;
+
             color:#94a3b8;
+
             text-align:center;
+
             padding:20px;
         }
 
         /* =========================
-           LOGIN POPUP
+           POPUP
         ========================= */
 
         .login-box{
             position:fixed;
+
             top:0;
             left:0;
+
             width:100%;
             height:100%;
+
             background:rgba(0,0,0,0.7);
 
             display:none;
+
             justify-content:center;
             align-items:center;
 
@@ -387,10 +454,14 @@
 
         .login-content{
             background:white;
+
             width:90%;
             max-width:400px;
+
             padding:35px;
+
             border-radius:20px;
+
             position:relative;
         }
 
@@ -401,29 +472,43 @@
 
         .login-content input{
             width:100%;
+
             padding:14px;
+
             margin-bottom:15px;
+
             border:1px solid #ddd;
+
             border-radius:10px;
+
             outline:none;
         }
 
         .login-content button{
             width:100%;
+
             padding:14px;
+
             border:none;
+
             background:#38bdf8;
             color:white;
+
             border-radius:10px;
+
             cursor:pointer;
+
             font-size:15px;
         }
 
         .close-btn{
             position:absolute;
+
             right:18px;
             top:10px;
+
             font-size:28px;
+
             cursor:pointer;
         }
 
@@ -509,16 +594,32 @@
         </div>
 
         <nav>
+
             <a href="#">Home</a>
-            <a href="#courses">Courses</a>
-            <a href="#notes">Notes</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
+
+            <a href="#courses">
+                Courses
+            </a>
+
+            <a href="#notes">
+                Notes
+            </a>
+
+            <a href="#gallery">
+                Gallery
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
         </nav>
 
         <div class="menu-btn"
             onclick="toggleMenu()">
+
             ☰
+
         </div>
 
     </header>
@@ -529,10 +630,22 @@
         id="mobileMenu">
 
         <a href="#">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#notes">Notes</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+
+        <a href="#courses">
+            Courses
+        </a>
+
+        <a href="#notes">
+            Notes
+        </a>
+
+        <a href="#gallery">
+            Gallery
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
 
     </div>
 
@@ -619,7 +732,7 @@
         </h2>
 
         <p class="subtitle">
-            Create account and enter Note ID to view notes
+            Create Account Once & View Notes Using Note ID
         </p>
 
         <div class="notes-grid">
@@ -628,14 +741,16 @@
 
                 <div class="note-icon">📘</div>
 
-                <h3>Computer Fundamentals</h3>
+                <h3>
+                    Computer Fundamentals
+                </h3>
 
                 <p>
                     Note ID : CF101
                 </p>
 
                 <button class="view-btn"
-                    onclick="openLogin('CF101')">
+                    onclick="openNote('CF101')">
 
                     View Notes
 
@@ -647,14 +762,16 @@
 
                 <div class="note-icon">📗</div>
 
-                <h3>MS Excel Notes</h3>
+                <h3>
+                    MS Excel Notes
+                </h3>
 
                 <p>
                     Note ID : EX202
                 </p>
 
                 <button class="view-btn"
-                    onclick="openLogin('EX202')">
+                    onclick="openNote('EX202')">
 
                     View Notes
 
@@ -666,14 +783,16 @@
 
                 <div class="note-icon">📕</div>
 
-                <h3>Tally Prime Notes</h3>
+                <h3>
+                    Tally Prime Notes
+                </h3>
 
                 <p>
                     Note ID : TP303
                 </p>
 
                 <button class="view-btn"
-                    onclick="openLogin('TP303')">
+                    onclick="openNote('TP303')">
 
                     View Notes
 
@@ -736,42 +855,78 @@
     <!-- FOOTER -->
 
     <footer>
-        © 2026 ECE Computer Center | All Rights Reserved
+
+        © 2026 ECE Computer Center
+        | All Rights Reserved
+
     </footer>
 
-    <!-- LOGIN POPUP -->
+    <!-- REGISTER POPUP -->
 
     <div class="login-box"
-        id="loginBox">
+        id="registerBox">
 
         <div class="login-content">
 
             <span class="close-btn"
-                onclick="closeLogin()">
+                onclick="closeRegister()">
 
                 ×
 
             </span>
 
             <h2>
-                Student Login 🔐
+                Create Student Account 🔐
             </h2>
 
             <input type="text"
+                id="studentName"
                 placeholder="Enter Your Name">
 
             <input type="email"
+                id="studentEmail"
                 placeholder="Enter Email">
 
             <input type="password"
+                id="studentPassword"
                 placeholder="Create Password">
+
+            <button onclick="createAccount()">
+
+                Create Account
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- NOTE POPUP -->
+
+    <div class="login-box"
+        id="noteBox">
+
+        <div class="login-content">
+
+            <span class="close-btn"
+                onclick="closeNoteBox()">
+
+                ×
+
+            </span>
+
+            <h2>
+                Enter Note ID 📚
+            </h2>
 
             <input type="text"
                 id="noteInput"
                 placeholder="Enter Note ID">
 
             <button onclick="checkNote()">
-                View Note
+
+                Open Note
+
             </button>
 
         </div>
@@ -891,43 +1046,119 @@
         }
 
         // =========================
-        // LOGIN POPUP
+        // ACCOUNT SYSTEM
         // =========================
 
         let currentNote = "";
 
-        function openLogin(noteId){
+        function openNote(noteId){
 
             currentNote = noteId;
 
-            document.getElementById("loginBox")
-            .style.display = "flex";
+            let account =
+            localStorage.getItem("studentAccount");
 
-        }
+            // IF ACCOUNT NOT CREATED
 
-        function closeLogin(){
+            if(!account){
 
-            document.getElementById("loginBox")
-            .style.display = "none";
+                document.getElementById("registerBox")
+                .style.display = "flex";
+
+            }
+
+            // IF ACCOUNT EXISTS
+
+            else{
+
+                document.getElementById("noteBox")
+                .style.display = "flex";
+
+            }
 
         }
 
         // =========================
-        // NOTE CHECK
+        // CREATE ACCOUNT
+        // =========================
+
+        function createAccount(){
+
+            let name =
+            document.getElementById("studentName")
+            .value;
+
+            let email =
+            document.getElementById("studentEmail")
+            .value;
+
+            let password =
+            document.getElementById("studentPassword")
+            .value;
+
+            // EMPTY CHECK
+
+            if(name === "" ||
+               email === "" ||
+               password === ""){
+
+                alert("Please fill all fields ❌");
+
+                return;
+
+            }
+
+            // SAVE DATA
+
+            let studentData = {
+
+                name:name,
+                email:email,
+                password:password
+
+            };
+
+            localStorage.setItem(
+
+                "studentAccount",
+
+                JSON.stringify(studentData)
+
+            );
+
+            alert(
+                "Account Created Successfully ✅"
+            );
+
+            closeRegister();
+
+            // OPEN NOTE BOX
+
+            document.getElementById("noteBox")
+            .style.display = "flex";
+
+        }
+
+        // =========================
+        // CHECK NOTE ID
         // =========================
 
         function checkNote(){
 
             let enteredId =
-            document.getElementById("noteInput").value;
+            document.getElementById("noteInput")
+            .value;
 
             if(enteredId === currentNote){
 
-                alert("Opening Notes : " + currentNote);
+                alert(
+                    "Opening Notes : " + currentNote
+                );
 
                 // OPEN NOTE PAGE
 
                 window.location.href =
+
                 "notes/" + currentNote + ".html";
 
             }
@@ -937,6 +1168,28 @@
                 alert("Invalid Note ID ❌");
 
             }
+
+        }
+
+        // =========================
+        // CLOSE REGISTER
+        // =========================
+
+        function closeRegister(){
+
+            document.getElementById("registerBox")
+            .style.display = "none";
+
+        }
+
+        // =========================
+        // CLOSE NOTE BOX
+        // =========================
+
+        function closeNoteBox(){
+
+            document.getElementById("noteBox")
+            .style.display = "none";
 
         }
 
