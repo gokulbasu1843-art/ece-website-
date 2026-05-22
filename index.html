@@ -2,506 +2,455 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ECE Computer Center</title>
+
+    <!-- GOOGLE FONT -->
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
+
         *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:#f4f7fb;
-    overflow-x:hidden;
-    color:#111827;
-}
-
-/* =========================
-   CUSTOM SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-    width:8px;
-}
-
-::-webkit-scrollbar-track{
-    background:#e5e7eb;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#38bdf8;
-    border-radius:10px;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-    width:100%;
-    padding:15px 7%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:1000;
-
-    background:rgba(15,23,42,0.75);
-    backdrop-filter:blur(12px);
-
-    box-shadow:0 4px 20px rgba(0,0,0,0.15);
-}
-
-.logo{
-    color:#38bdf8;
-    font-size:26px;
-    font-weight:700;
-    letter-spacing:1px;
-}
-
-nav{
-    display:flex;
-    gap:30px;
-}
-
-nav a{
-    text-decoration:none;
-    color:white;
-    font-size:15px;
-    font-weight:500;
-    position:relative;
-    transition:0.3s;
-}
-
-nav a::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0%;
-    height:2px;
-    background:#38bdf8;
-    transition:.3s;
-}
-
-nav a:hover::after{
-    width:100%;
-}
-
-nav a:hover{
-    color:#38bdf8;
-}
-
-.menu-btn{
-    display:none;
-    color:white;
-    font-size:30px;
-    cursor:pointer;
-}
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-.mobile-menu{
-    position:fixed;
-    top:75px;
-    right:-100%;
-    width:260px;
-    height:100vh;
-    background:#0f172a;
-    display:flex;
-    flex-direction:column;
-    transition:0.4s;
-    z-index:999;
-    padding-top:20px;
-}
-
-.mobile-menu a{
-    color:white;
-    text-decoration:none;
-    padding:18px 25px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    transition:.3s;
-}
-
-.mobile-menu a:hover{
-    background:#1e293b;
-    color:#38bdf8;
-}
-
-.mobile-menu.show{
-    right:0;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    width:100%;
-    height:100vh;
-    position:relative;
-    overflow:hidden;
-}
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    opacity:0;
-    transition:1s ease-in-out;
-}
-
-.slide.active{
-    opacity:1;
-}
-
-.slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    filter:brightness(35%);
-    transform:scale(1.05);
-}
-
-.slide::before{
-    content:'';
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(to right,
-    rgba(0,0,0,0.7),
-    rgba(0,0,0,0.3));
-}
-
-.text{
-    position:absolute;
-    top:50%;
-    left:7%;
-    transform:translateY(-50%);
-    color:white;
-    max-width:650px;
-    z-index:2;
-    animation:fadeUp 1s ease;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(-50%);
-    }
-}
-
-.text h1{
-    font-size:65px;
-    line-height:1.2;
-    margin-bottom:18px;
-    font-weight:700;
-}
-
-.text p{
-    font-size:20px;
-    margin-bottom:28px;
-    color:#e5e7eb;
-    line-height:1.6;
-}
-
-.btn{
-    padding:15px 35px;
-    border:none;
-    border-radius:50px;
-    background:#38bdf8;
-    color:white;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-    box-shadow:0 10px 25px rgba(56,189,248,0.35);
-}
-
-.btn:hover{
-    background:#0ea5e9;
-    transform:translateY(-4px);
-}
-
-/* =========================
-   COURSES
-========================= */
-
-.courses{
-    padding:110px 7%;
-    text-align:center;
-}
-
-.title{
-    font-size:45px;
-    margin-bottom:15px;
-    color:#0f172a;
-}
-
-.subtitle{
-    color:#64748b;
-    margin-bottom:55px;
-    font-size:16px;
-}
-
-.course-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:28px;
-}
-
-.course-card{
-    background:white;
-    padding:40px 28px;
-    border-radius:22px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    transition:0.4s;
-    position:relative;
-    overflow:hidden;
-}
-
-.course-card::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:5px;
-    background:#38bdf8;
-}
-
-.course-card:hover{
-    transform:translateY(-12px);
-}
-
-.icon{
-    font-size:55px;
-    margin-bottom:18px;
-}
-
-.course-card h3{
-    margin-bottom:12px;
-    font-size:24px;
-}
-
-.course-card p{
-    color:#64748b;
-    line-height:1.7;
-}
-
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-    padding:110px 7%;
-    background:white;
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:60px;
-    align-items:center;
-}
-
-.about img{
-    width:100%;
-    border-radius:24px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-}
-
-.about-text h2{
-    font-size:45px;
-    margin-bottom:20px;
-}
-
-.about-text p{
-    color:#555;
-    line-height:1.9;
-    font-size:16px;
-}
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact{
-    background:#0f172a;
-    color:white;
-    text-align:center;
-    padding:100px 7%;
-}
-
-.contact h2{
-    font-size:45px;
-    margin-bottom:25px;
-}
-
-.contact p{
-    margin:14px 0;
-    font-size:18px;
-    color:#d1d5db;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    background:#020617;
-    color:#94a3b8;
-    text-align:center;
-    padding:20px;
-    font-size:14px;
-}
-
-/* =========================
-   TABLET
-========================= */
-
-@media(max-width:992px){
-
-    .about{
-        grid-template-columns:1fr;
-    }
-
-    .text h1{
-        font-size:48px;
-    }
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    nav{
-        display:none;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    header{
-        padding:14px 5%;
-    }
-
-    .logo{
-        font-size:20px;
-    }
-
-    .hero{
-        height:80vh;
-    }
-
-    .text{
-        left:5%;
-        right:5%;
-        max-width:100%;
-    }
-
-    .text h1{
-        font-size:34px;
-    }
-
-    .text p{
-        font-size:14px;
-    }
-
-    .btn{
-        padding:12px 24px;
-        font-size:14px;
-    }
-
-    .courses,
-    .about,
-    .contact{
-        padding:75px 5%;
-    }
-
-    .title,
-    .about-text h2,
-    .contact h2{
-        font-size:32px;
-    }
-
-}
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media(max-width:480px){
-
-    .hero{
-        height:70vh;
-    }
-
-    .text h1{
-        font-size:28px;
-    }
-
-    .text p{
-        font-size:13px;
-    }
-
-    .btn{
-        width:100%;
-        max-width:220px;
-    }
-
-    .course-grid{
-        grid-template-columns:1fr;
-    }
-
-    .course-card{
-        padding:30px 22px;
-    }
-
-}
-
-/* =========================
-   EXTRA LARGE SCREEN
-========================= */
-
-@media(min-width:1600px){
-
-    .text h1{
-        font-size:80px;
-    }
-
-    .text p{
-        font-size:24px;
-    }
-
-    .title,
-    .about-text h2,
-    .contact h2{
-        font-size:60px;
-    }
-
-}
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#f4f7fb;
+            overflow-x:hidden;
+        }
+
+        /* =========================
+           SCROLLBAR
+        ========================= */
+
+        ::-webkit-scrollbar{
+            width:8px;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:#38bdf8;
+            border-radius:20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header{
+            width:100%;
+            padding:15px 7%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:1000;
+
+            background:rgba(15,23,42,0.85);
+            backdrop-filter:blur(10px);
+        }
+
+        .logo{
+            color:#38bdf8;
+            font-size:25px;
+            font-weight:700;
+        }
+
+        nav{
+            display:flex;
+            gap:28px;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            font-size:15px;
+            position:relative;
+            transition:.3s;
+        }
+
+        nav a::after{
+            content:'';
+            position:absolute;
+            left:0;
+            bottom:-5px;
+            width:0%;
+            height:2px;
+            background:#38bdf8;
+            transition:.3s;
+        }
+
+        nav a:hover::after{
+            width:100%;
+        }
+
+        nav a:hover{
+            color:#38bdf8;
+        }
+
+        .menu-btn{
+            display:none;
+            color:white;
+            font-size:30px;
+            cursor:pointer;
+        }
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        .mobile-menu{
+            position:fixed;
+            top:72px;
+            right:-100%;
+            width:260px;
+            height:100vh;
+            background:#0f172a;
+
+            display:flex;
+            flex-direction:column;
+
+            transition:.4s;
+            z-index:999;
+        }
+
+        .mobile-menu a{
+            color:white;
+            text-decoration:none;
+            padding:18px 25px;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+        }
+
+        .mobile-menu.show{
+            right:0;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero{
+            width:100%;
+            height:100vh;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .slide{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            transition:1s;
+        }
+
+        .slide.active{
+            opacity:1;
+        }
+
+        .slide img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            filter:brightness(40%);
+        }
+
+        .slide::before{
+            content:'';
+            position:absolute;
+            width:100%;
+            height:100%;
+            background:linear-gradient(to right,
+            rgba(0,0,0,0.7),
+            rgba(0,0,0,0.2));
+        }
+
+        .text{
+            position:absolute;
+            top:50%;
+            left:7%;
+            transform:translateY(-50%);
+            color:white;
+            max-width:650px;
+            z-index:2;
+        }
+
+        .text h1{
+            font-size:65px;
+            line-height:1.2;
+            margin-bottom:15px;
+        }
+
+        .text p{
+            font-size:20px;
+            margin-bottom:25px;
+            color:#ddd;
+        }
+
+        .btn{
+            padding:15px 35px;
+            border:none;
+            border-radius:50px;
+            background:#38bdf8;
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            background:#0ea5e9;
+            transform:translateY(-5px);
+        }
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .title{
+            font-size:45px;
+            margin-bottom:15px;
+            color:#0f172a;
+        }
+
+        .subtitle{
+            color:#64748b;
+            margin-bottom:55px;
+        }
+
+        /* =========================
+           COURSES
+        ========================= */
+
+        .courses{
+            padding:110px 7%;
+            text-align:center;
+        }
+
+        .course-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:28px;
+        }
+
+        .course-card{
+            background:white;
+            padding:40px 28px;
+            border-radius:22px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+            transition:.4s;
+        }
+
+        .course-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .icon{
+            font-size:55px;
+            margin-bottom:18px;
+        }
+
+        .course-card h3{
+            margin-bottom:12px;
+        }
+
+        .course-card p{
+            color:#64748b;
+            line-height:1.7;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features{
+            padding:110px 7%;
+            background:white;
+            text-align:center;
+        }
+
+        .feature-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:28px;
+        }
+
+        .feature-card{
+            background:#f8fafc;
+            padding:40px 28px;
+            border-radius:22px;
+            transition:.4s;
+            box-shadow:0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .feature-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .feature-icon{
+            font-size:55px;
+            margin-bottom:18px;
+        }
+
+        .feature-card h3{
+            margin-bottom:12px;
+        }
+
+        .feature-card p{
+            color:#64748b;
+            line-height:1.7;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact{
+            background:#0f172a;
+            color:white;
+            text-align:center;
+            padding:100px 7%;
+        }
+
+        .contact h2{
+            font-size:45px;
+            margin-bottom:25px;
+        }
+
+        .contact p{
+            margin:14px 0;
+            color:#d1d5db;
+            font-size:18px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer{
+            background:#020617;
+            color:#94a3b8;
+            text-align:center;
+            padding:20px;
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media(max-width:992px){
+
+            .text h1{
+                font-size:48px;
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:768px){
+
+            nav{
+                display:none;
+            }
+
+            .menu-btn{
+                display:block;
+            }
+
+            header{
+                padding:14px 5%;
+            }
+
+            .logo{
+                font-size:20px;
+            }
+
+            .hero{
+                height:80vh;
+            }
+
+            .text{
+                left:5%;
+                right:5%;
+                max-width:100%;
+            }
+
+            .text h1{
+                font-size:34px;
+            }
+
+            .text p{
+                font-size:14px;
+            }
+
+            .btn{
+                padding:12px 24px;
+                font-size:14px;
+            }
+
+            .courses,
+            .features,
+            .contact{
+                padding:75px 5%;
+            }
+
+            .title,
+            .contact h2{
+                font-size:32px;
+            }
+
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media(max-width:480px){
+
+            .hero{
+                height:70vh;
+            }
+
+            .text h1{
+                font-size:28px;
+            }
+
+            .text p{
+                font-size:13px;
+            }
+
+            .btn{
+                width:100%;
+                max-width:220px;
+            }
+
+            .course-grid,
+            .feature-grid{
+                grid-template-columns:1fr;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
@@ -515,8 +464,7 @@ footer{
         <nav>
             <a href="#">Home</a>
             <a href="#courses">Courses</a>
-            <a href="#about">About</a>
-            <a href="#">Notes</a>
+            <a href="#features">Facilities</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -527,11 +475,12 @@ footer{
     <!-- MOBILE MENU -->
 
     <div class="mobile-menu" id="mobileMenu">
+
         <a href="#">Home</a>
         <a href="#courses">Courses</a>
-        <a href="#about">About</a>
-        <a href="#">Notes</a>
+        <a href="#features">Facilities</a>
         <a href="#contact">Contact</a>
+
     </div>
 
     <!-- HERO -->
@@ -543,9 +492,15 @@ footer{
             <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop">
 
             <div class="text">
+
                 <h1>Learn Computer Skills Easily 💻</h1>
-                <p>PGDCA | ADCA | DCA | Professional Training</p>
+
+                <p>
+                    PGDCA | ADCA | DCA | Professional Training
+                </p>
+
                 <button class="btn">Enroll Now</button>
+
             </div>
 
         </div>
@@ -555,9 +510,15 @@ footer{
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop">
 
             <div class="text">
+
                 <h1>Professional Courses 🚀</h1>
-                <p>Excel | Tally | Photoshop | Web Design</p>
+
+                <p>
+                    Excel | Tally | Photoshop | Web Design
+                </p>
+
                 <button class="btn">Start Learning</button>
+
             </div>
 
         </div>
@@ -567,9 +528,15 @@ footer{
             <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop">
 
             <div class="text">
+
                 <h1>Build Your Bright Career ✨</h1>
-                <p>Join ECE Computer Center Today</p>
+
+                <p>
+                    Join ECE Computer Center Today
+                </p>
+
                 <button class="btn">Join Now</button>
+
             </div>
 
         </div>
@@ -580,54 +547,125 @@ footer{
 
     <section class="courses" id="courses">
 
-        <h2 class="title">Our Courses</h2>
-        <p class="subtitle">Best Computer Courses Available Here</p>
+        <h2 class="title">Our Courses 📚</h2>
+
+        <p class="subtitle">
+            Best Computer Courses Available Here
+        </p>
 
         <div class="course-grid">
 
             <div class="course-card">
+
                 <div class="icon">💻</div>
+
                 <h3>PGDCA</h3>
-                <p>Professional Diploma in Computer Application.</p>
+
+                <p>
+                    Professional Diploma in Computer Application.
+                </p>
+
             </div>
 
             <div class="course-card">
+
                 <div class="icon">🖥️</div>
+
                 <h3>ADCA</h3>
-                <p>Advanced Diploma in Computer Application.</p>
+
+                <p>
+                    Advanced Diploma in Computer Application.
+                </p>
+
             </div>
 
             <div class="course-card">
+
                 <div class="icon">📊</div>
+
                 <h3>Excel</h3>
-                <p>Advanced Excel with practical projects.</p>
+
+                <p>
+                    Advanced Excel with practical projects.
+                </p>
+
             </div>
 
             <div class="course-card">
+
                 <div class="icon">🧾</div>
+
                 <h3>Tally Prime</h3>
-                <p>GST & Accounting Training with Tally.</p>
+
+                <p>
+                    GST & Accounting Training with Tally.
+                </p>
+
             </div>
 
         </div>
 
     </section>
 
-    <!-- ABOUT -->
+    <!-- FEATURES -->
 
-    <section class="about" id="about">
+    <section class="features" id="features">
 
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop">
+        <h2 class="title">What We Provide ✨</h2>
 
-        <div class="about-text">
+        <p class="subtitle">
+            Best Facilities For Students
+        </p>
 
-            <h2>Why Choose Us?</h2>
+        <div class="feature-grid">
 
-            <p>
-                ECE Computer Center provides high quality computer education with practical knowledge.
-                We help students improve their computer skills and build successful careers.
-                Experienced teachers, modern labs and friendly environment make learning easy and enjoyable.
-            </p>
+            <div class="feature-card">
+
+                <div class="feature-icon">👨‍🏫</div>
+
+                <h3>Expert Teachers</h3>
+
+                <p>
+                    Learn from experienced and friendly teachers.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">💻</div>
+
+                <h3>Modern Computer Lab</h3>
+
+                <p>
+                    Latest computer systems with practical training.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📚</div>
+
+                <h3>Study Materials</h3>
+
+                <p>
+                    Notes, PDFs and practical assignments for students.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🏆</div>
+
+                <h3>Certificate Courses</h3>
+
+                <p>
+                    Professional certificates to improve career opportunities.
+                </p>
+
+            </div>
 
         </div>
 
@@ -640,7 +678,9 @@ footer{
         <h2>Contact Us 📞</h2>
 
         <p>📱 +91 8453670810</p>
+
         <p>📱 +91 6000181843</p>
+
         <p>📍 Kalapani</p>
 
     </section>
@@ -648,7 +688,9 @@ footer{
     <!-- FOOTER -->
 
     <footer>
+
         © 2026 ECE Computer Center | All Rights Reserved
+
     </footer>
 
     <!-- JAVASCRIPT -->
@@ -658,33 +700,38 @@ footer{
         // HERO SLIDER
 
         let slides = document.querySelectorAll(".slide");
+
         let index = 0;
 
-        function showSlide() {
+        function showSlide(){
 
             slides.forEach(slide => {
                 slide.classList.remove("active");
             });
 
             slides[index].classList.add("active");
+
         }
 
-        setInterval(() => {
+        setInterval(()=>{
 
             index++;
 
-            if (index >= slides.length) {
+            if(index >= slides.length){
                 index = 0;
             }
 
             showSlide();
 
-        }, 4000);
+        },4000);
 
         // MOBILE MENU
 
-        function toggleMenu() {
-            document.getElementById("mobileMenu").classList.toggle("show");
+        function toggleMenu(){
+
+            document.getElementById("mobileMenu")
+            .classList.toggle("show");
+
         }
 
     </script>
