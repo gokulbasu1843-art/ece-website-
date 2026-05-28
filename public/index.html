@@ -282,6 +282,37 @@ setInterval(()=>{
 loadSlides();
     </script>
 
+
+<script>
+
+window.onload = function(){
+
+document.getElementById("loginBox")
+.style.display = "flex";
+
+}
+
+</script>
+    <script>
+
+window.onload = function(){
+
+let user =
+localStorage.getItem(
+"studentEmail"
+);
+
+if(!user){
+
+document.getElementById("loginBox")
+.style.display = "flex";
+
+}
+
+}
+
+</script>
+    
 </body>
 
 </html>
