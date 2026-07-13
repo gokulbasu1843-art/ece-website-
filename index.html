@@ -1,1408 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECE Computer Center</title>
 
-    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        body{
-            font-family:'Poppins',sans-serif;
-            background:#f8fafc;
-            overflow-x:hidden;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header{
-            width:100%;
-            padding:15px 7%;
-
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-
-            position:fixed;
-            top:0;
-            left:0;
-
-            z-index:1000;
-
-            background:rgba(15,23,42,0.85);
-
-            backdrop-filter:blur(10px);
-        }
-
-        .logo{
-            color:#38bdf8;
-            font-size:28px;
-            font-weight:700;
-        }
-
-        nav{
-            display:flex;
-            gap:28px;
-        }
-
-        nav a{
-            text-decoration:none;
-            color:white;
-
-            transition:.3s;
-
-            font-size:15px;
-            font-weight:500;
-        }
-
-        nav a:hover{
-            color:#38bdf8;
-        }
-
-        .menu-btn{
-            display:none;
-            color:white;
-            font-size:30px;
-            cursor:pointer;
-        }
-
-        /* =========================
-           MOBILE MENU
-        ========================= */
-
-        .mobile-menu{
-            position:fixed;
-
-            top:70px;
-            right:-100%;
-
-            width:260px;
-            height:100vh;
-
-            background:#0f172a;
-
-            display:flex;
-            flex-direction:column;
-
-            transition:.4s;
-
-            z-index:999;
-        }
-
-        .mobile-menu a{
-            color:white;
-            text-decoration:none;
-
-            padding:18px 25px;
-
-            border-bottom:1px solid rgba(255,255,255,0.08);
-        }
-
-        .mobile-menu.show{
-            right:0;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero{
-            width:100%;
-            height:100vh;
-
-            position:relative;
-
-            overflow:hidden;
-        }
-
-        .slide{
-            position:absolute;
-
-            width:100%;
-            height:100%;
-
-            opacity:0;
-
-            transition:1s;
-        }
-
-        .slide.active{
-            opacity:1;
-        }
-
-        .slide img{
-            width:100%;
-            height:100%;
-
-            object-fit:cover;
-
-            filter:brightness(35%);
-        }
-
-        .overlay{
-            position:absolute;
-
-            width:100%;
-            height:100%;
-
-            background:linear-gradient(
-            to right,
-            rgba(0,0,0,0.7),
-            rgba(0,0,0,0.2)
-            );
-        }
-
-        .text{
-            position:absolute;
-
-            top:50%;
-            left:7%;
-
-            transform:translateY(-50%);
-
-            color:white;
-
-            max-width:650px;
-
-            z-index:2;
-        }
-
-        .text h1{
-            font-size:65px;
-            margin-bottom:20px;
-            line-height:1.2;
-        }
-
-        .text p{
-            font-size:20px;
-            margin-bottom:30px;
-            color:#ddd;
-        }
-
-        .btn{
-            padding:15px 35px;
-
-            border:none;
-            border-radius:50px;
-
-            background:#38bdf8;
-            color:white;
-
-            font-size:16px;
-            font-weight:600;
-
-            cursor:pointer;
-
-            transition:.3s;
-        }
-
-        .btn:hover{
-            background:#0ea5e9;
-            transform:translateY(-5px);
-        }
-
-        /* =========================
-           SECTION TITLE
-        ========================= */
-
-        .title{
-            font-size:45px;
-            margin-bottom:12px;
-
-            color:#0f172a;
-
-            text-align:center;
-        }
-
-        .subtitle{
-            color:#64748b;
-
-            margin-bottom:50px;
-
-            text-align:center;
-        }
-
-        /* =========================
-           COURSES
-        ========================= */
-
-        .courses{
-            padding:110px 7%;
-        }
-
-        .course-grid{
-            display:grid;
-
-            grid-template-columns:
-            repeat(auto-fit,minmax(250px,1fr));
-
-            gap:28px;
-        }
-
-        .course-card{
-            background:white;
-
-            padding:40px 28px;
-
-            border-radius:22px;
-
-            box-shadow:0 10px 30px rgba(0,0,0,0.08);
-
-            transition:.4s;
-
-            text-align:center;
-        }
-
-        .course-card:hover{
-            transform:translateY(-10px);
-        }
-
-        .icon{
-            font-size:55px;
-            margin-bottom:18px;
-        }
-
-        .course-card h3{
-            margin-bottom:12px;
-            font-size:24px;
-        }
-
-        .course-card p{
-            color:#64748b;
-            line-height:1.7;
-        }
-
-        /* =========================
-           NOTES
-        ========================= */
-
-        .notes{
-            padding:110px 7%;
-
-            background:white;
-        }
-
-        .notes-grid{
-            display:grid;
-
-            grid-template-columns:
-            repeat(auto-fit,minmax(250px,1fr));
-
-            gap:28px;
-
-            margin-top:50px;
-        }
-
-        .note-card{
-            background:#f1f5f9;
-
-            padding:40px 28px;
-
-            border-radius:22px;
-
-            text-align:center;
-
-            transition:.4s;
-        }
-
-        .note-card:hover{
-            transform:translateY(-10px);
-        }
-
-        .note-icon{
-            font-size:55px;
-            margin-bottom:18px;
-        }
-
-        .note-card h3{
-            margin-bottom:12px;
-            font-size:24px;
-        }
-
-        .note-card p{
-            color:#64748b;
-            margin-bottom:20px;
-        }
-
-        .view-btn{
-            padding:12px 24px;
-
-            border:none;
-
-            background:#38bdf8;
-            color:white;
-
-            border-radius:40px;
-
-            cursor:pointer;
-
-            transition:.3s;
-        }
-
-        .view-btn:hover{
-            background:#0ea5e9;
-        }
-
-        /* =========================
-           GALLERY
-        ========================= */
-
-        .gallery{
-            padding:80px 7%;
-        }
-
-        .gallery-grid{
-            display:grid;
-
-            grid-template-columns:
-            repeat(auto-fit,minmax(220px,1fr));
-
-            gap:16px;
-
-            margin-top:40px;
-        }
-
-        .gallery-grid img{
-            width:100%;
-            height:180px;
-
-            object-fit:cover;
-
-            border-radius:16px;
-
-            transition:.4s;
-        }
-
-        .gallery-grid img:hover{
-            transform:scale(1.04);
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact{
-            background:#0f172a;
-
-            color:white;
-
-            text-align:center;
-
-            padding:100px 7%;
-        }
-
-        .contact h2{
-            font-size:45px;
-            margin-bottom:25px;
-        }
-
-        .contact p{
-            font-size:18px;
-            margin:12px 0;
-
-            color:#d1d5db;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer{
-            background:#020617;
-
-            color:#94a3b8;
-
-            text-align:center;
-
-            padding:20px;
-        }
-
-        /* =========================
-           POPUP
-        ========================= */
-
-        .login-box{
-            position:fixed;
-
-            top:0;
-            left:0;
-
-            width:100%;
-            height:100%;
-
-            background:rgba(0,0,0,0.7);
-
-            display:none;
-
-            justify-content:center;
-            align-items:center;
-
-            z-index:9999;
-        }
-
-        .login-content{
-            background:white;
-
-            width:90%;
-            max-width:400px;
-
-            padding:35px;
-
-            border-radius:20px;
-
-            position:relative;
-        }
-
-        .login-content h2{
-            margin-bottom:25px;
-            text-align:center;
-        }
-
-        .login-content input{
-            width:100%;
-
-            padding:14px;
-
-            margin-bottom:15px;
-
-            border:1px solid #ddd;
-
-            border-radius:10px;
-
-            outline:none;
-        }
-
-        .login-content button{
-            width:100%;
-
-            padding:14px;
-
-            border:none;
-
-            background:#38bdf8;
-            color:white;
-
-            border-radius:10px;
-
-            cursor:pointer;
-
-            font-size:15px;
-        }
-
-        .close-btn{
-            position:absolute;
-
-            right:18px;
-            top:10px;
-
-            font-size:28px;
-
-            cursor:pointer;
-        }
-
-        /* =========================
-           ADMIN BUTTON
-        ========================= */
-
-        .admin-btn{
-            margin:30px auto;
-
-            display:block;
-
-            padding:14px 28px;
-
-            border:none;
-
-            background:#0f172a;
-            color:white;
-
-            border-radius:40px;
-
-            cursor:pointer;
-
-            font-size:15px;
-
-            transition:.3s;
-        }
-
-        .admin-btn:hover{
-            background:#1e293b;
-        }
-
-        /* =========================
-           STUDENT DATABASE
-        ========================= */
-
-        .student-data{
-            width:90%;
-            max-width:900px;
-
-            margin:40px auto;
-
-            background:white;
-
-            padding:30px;
-
-            border-radius:20px;
-
-            box-shadow:0 10px 30px rgba(0,0,0,0.08);
-
-            display:none;
-        }
-
-        .student-data h2{
-            margin-bottom:25px;
-            text-align:center;
-        }
-
-        .student-data table{
-            width:100%;
-            border-collapse:collapse;
-        }
-
-        .student-data th{
-            background:#38bdf8;
-            color:white;
-        }
-
-        .student-data th,
-        .student-data td{
-            padding:14px;
-            border:1px solid #ddd;
-            text-align:center;
-        }
-
-        .student-data tr:nth-child(even){
-            background:#f8fafc;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media(max-width:768px){
-
-            nav{
-                display:none;
-            }
-
-            .menu-btn{
-                display:block;
-            }
-
-            .hero{
-                height:60vh;
-            }
-
-            .text{
-                left:5%;
-                right:5%;
-                max-width:100%;
-            }
-
-            .text h1{
-                font-size:30px;
-            }
-
-            .text p{
-                font-size:14px;
-            }
-
-            .btn{
-                padding:10px 22px;
-                font-size:14px;
-            }
-
-            .courses,
-            .notes,
-            .gallery,
-            .contact{
-                padding:75px 5%;
-            }
-
-            .title,
-            .contact h2{
-                font-size:32px;
-            }
-
-            .student-data{
-                overflow-x:auto;
-            }
-
-            .student-data table{
-                min-width:600px;
-            }
-
-        }
-
-        @media(max-width:480px){
-
-            .hero{
-                height:52vh;
-            }
-
-            .text h1{
-                font-size:24px;
-            }
-
-            .text p{
-                font-size:12px;
-            }
-
-        }
-
-    </style>
-
+    <script type="module" src="firebase.js"></script>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
-    <header>
+<header class="header">
 
-        <div class="logo">
-
-            ECE Computer Center
-
-        </div>
-
-        <nav>
-
-            <a href="#">Home</a>
-
-            <a href="#courses">
-                Courses
-            </a>
-
-            <a href="#notes">
-                Notes
-            </a>
-
-            <a href="#gallery">
-                Gallery
-            </a>
-
-            <a href="#contact">
-                Contact
-            </a>
-
-        </nav>
-
-        <div class="menu-btn"
-            onclick="toggleMenu()">
-
-            ☰
-
-        </div>
-
-    </header>
-
-    <!-- MOBILE MENU -->
-
-    <div class="mobile-menu"
-        id="mobileMenu">
-
-        <a href="#">Home</a>
-
-        <a href="#courses">
-            Courses
-        </a>
-
-        <a href="#notes">
-            Notes
-        </a>
-
-        <a href="#gallery">
-            Gallery
-        </a>
-
-        <a href="#contact">
-            Contact
-        </a>
-
+    <div class="logo">
+        💻 ECE Computer Center
     </div>
 
-    <!-- HERO -->
+    <nav class="navbar">
 
-    <section class="hero"
-        id="slider">
-    </section>
+        <a href="#home">Home</a>
 
-    <!-- COURSES -->
+        <a href="#courses">Courses</a>
 
-    <section class="courses"
-        id="courses">
+        <a href="#notes">Notes</a>
 
-        <h2 class="title">
+        <a href="#gallery">Gallery</a>
 
-            Our Courses
+        <a href="#about">About</a>
 
-        </h2>
+        <a href="#contact">Contact</a>
 
-        <p class="subtitle">
+        <button class="login-btn" onclick="openRegister()">
+            Login
+        </button>
 
-            Professional Computer Courses
+    </nav>
 
-        </p>
+    <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </div>
 
-        <div class="course-grid">
+</header>
 
-            <div class="course-card">
+<!-- ================= MOBILE MENU ================= -->
 
-                <div class="icon">💻</div>
+<div class="mobile-menu" id="mobileMenu">
 
-                <h3>PGDCA</h3>
+    <a href="#home">Home</a>
 
-                <p>
-                    Professional Diploma in Computer Application.
-                </p>
+    <a href="#courses">Courses</a>
 
-            </div>
+    <a href="#notes">Notes</a>
 
-            <div class="course-card">
+    <a href="#gallery">Gallery</a>
 
-                <div class="icon">🖥️</div>
+    <a href="#about">About</a>
 
-                <h3>ADCA</h3>
+    <a href="#contact">Contact</a>
 
-                <p>
-                    Advanced Diploma in Computer Application.
-                </p>
-
-            </div>
-
-            <div class="course-card">
-
-                <div class="icon">📊</div>
-
-                <h3>Excel</h3>
-
-                <p>
-                    Advanced Excel with practical training.
-                </p>
-
-            </div>
-
-            <div class="course-card">
-
-                <div class="icon">🧾</div>
-
-                <h3>Tally Prime</h3>
-
-                <p>
-                    GST & Accounting Training with Tally.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- NOTES -->
-
-    <section class="notes"
-        id="notes">
-
-        <h2 class="title">
-
-            Student Notes 📚
-
-        </h2>
-
-        <p class="subtitle">
-
-            Create Account Once & View Notes Using Note ID
-
-        </p>
-
-        <div class="notes-grid">
-
-            <div class="note-card">
-
-                <div class="note-icon">📘</div>
-
-                <h3>
-
-                    Computer Fundamentals
-
-                </h3>
-
-                <p>
-
-                    Note ID : CF101
-
-                </p>
-
-                <button class="view-btn"
-                    onclick="openNote('CF101')">
-
-                    View Notes
-
-                </button>
-
-            </div>
-
-            <div class="note-card">
-
-                <div class="note-icon">📗</div>
-
-                <h3>
-
-                    MS Excel Notes
-
-                </h3>
-
-                <p>
-
-                    Note ID : EX202
-
-                </p>
-
-                <button class="view-btn"
-                    onclick="openNote('EX202')">
-
-                    View Notes
-
-                </button>
-
-            </div>
-
-            <div class="note-card">
-
-                <div class="note-icon">📕</div>
-
-                <h3>
-
-                    Tally Prime Notes
-
-                </h3>
-
-                <p>
-
-                    Note ID : TP303
-
-                </p>
-
-                <button class="view-btn"
-                    onclick="openNote('TP303')">
-
-                    View Notes
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ADMIN BUTTON -->
-
-    <button class="admin-btn"
-        onclick="showStudents()">
-
-        View Student Database
-
+    <button class="mobile-login" onclick="openRegister()">
+        Login
     </button>
 
-    <!-- STUDENT DATABASE -->
+</div>
 
-    <div class="student-data"
-        id="studentData">
+<!-- ================= HERO ================= -->
 
-        <h2>
+<section class="hero" id="home">
 
-            Registered Students 📚
+    <div class="hero-left">
 
-        </h2>
+        <span class="tag">
+            🎓 Best Computer Institute
+        </span>
 
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Name</th>
-
-                    <th>Email</th>
-
-                    <th>Password</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="studentTable">
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <!-- GALLERY -->
-
-    <section class="gallery"
-        id="gallery">
-
-        <h2 class="title">
-
-            Our Gallery 📸
-
-        </h2>
-
-        <p class="subtitle">
-
-            Computer Lab & Student Activities
-
-        </p>
-
-        <div class="gallery-grid">
-
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop">
-
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
-
-        </div>
-
-    </section>
-
-    <!-- CONTACT -->
-
-    <section class="contact"
-        id="contact">
-
-        <h2>
-
-            Contact Us 📞
-
-        </h2>
+        <h1>
+            Learn Computer Skills <br>
+            For Your Bright Future 💻
+        </h1>
 
         <p>
-
-            📱 +91 8453670810
-
+            PGDCA | ADCA | DCA | Tally Prime |
+            Advanced Excel | CCC |
+            Professional Computer Training
         </p>
 
-        <p>
+        <div class="hero-buttons">
 
-            📱 +91 6000181843
+            <button class="btn" onclick="openRegister()">
+                Enroll Now
+            </button>
 
-        </p>
-
-        <p>
-
-            📍 Kalapani
-
-        </p>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        © 2026 ECE Computer Center
-        | All Rights Reserved
-
-    </footer>
-
-    <!-- REGISTER POPUP -->
-
-    <div class="login-box"
-        id="registerBox">
-
-        <div class="login-content">
-
-            <span class="close-btn"
-                onclick="closeRegister()">
-
-                ×
-
-            </span>
-
-            <h2>
-
-                Create Student Account 🔐
-
-            </h2>
-
-            <input type="text"
-                id="studentName"
-                placeholder="Enter Your Name">
-
-            <input type="email"
-                id="studentEmail"
-                placeholder="Enter Email">
-
-            <input type="password"
-                id="studentPassword"
-                placeholder="Create Password">
-
-            <button onclick="createAccount()">
-
-                Create Account
-
+            <button class="btn-outline" onclick="location.href='#courses'">
+                View Courses
             </button>
 
         </div>
 
     </div>
 
-    <!-- NOTE POPUP -->
+    <div class="hero-right">
 
-    <div class="login-box"
-        id="noteBox">
+        <img src="images/hero.jpg" alt="ECE Computer Center">
 
-        <div class="login-content">
+    </div>
 
-            <span class="close-btn"
-                onclick="closeNoteBox()">
+</section>
+<!-- ================= COURSES ================= -->
 
-                ×
+<section class="courses" id="courses">
 
-            </span>
+    <h2 class="section-title">Our Courses</h2>
 
-            <h2>
+    <p class="section-subtitle">
+        Professional Computer Courses for Students & Job Seekers
+    </p>
 
-                Enter Note ID 📚
+    <div class="course-grid">
 
-            </h2>
+        <div class="course-card">
+            <div class="course-icon">💻</div>
+            <h3>PGDCA</h3>
+            <p>Professional Diploma in Computer Application.</p>
+            <button class="course-btn">Learn More</button>
+        </div>
 
-            <input type="text"
-                id="noteInput"
-                placeholder="Enter Note ID">
+        <div class="course-card">
+            <div class="course-icon">🖥️</div>
+            <h3>ADCA</h3>
+            <p>Advanced Diploma in Computer Application.</p>
+            <button class="course-btn">Learn More</button>
+        </div>
 
-            <button onclick="checkNote()">
+        <div class="course-card">
+            <div class="course-icon">📊</div>
+            <h3>Advanced Excel</h3>
+            <p>Excel with formulas, charts and live projects.</p>
+            <button class="course-btn">Learn More</button>
+        </div>
 
-                Open Note
+        <div class="course-card">
+            <div class="course-icon">🧾</div>
+            <h3>Tally Prime</h3>
+            <p>Accounting, GST & Business Management.</p>
+            <button class="course-btn">Learn More</button>
+        </div>
 
+    </div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+    <h2 class="section-title">Why Choose Us?</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <h3>👨‍🏫 Expert Trainers</h3>
+            <p>Experienced faculty with practical teaching methods.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💼 Job Oriented</h3>
+            <p>Courses designed for career growth and employment.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📜 Certificate</h3>
+            <p>Course completion certificate after successful training.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🖥️ Practical Lab</h3>
+            <p>Hands-on practice with modern computer systems.</p>
+        </div>
+
+    </div>
+
+</section>
+    <!-- ================= NOTES ================= -->
+
+<section class="notes" id="notes">
+
+    <h2 class="section-title">Student Notes 📚</h2>
+
+    <p class="section-subtitle">
+        Login or Create an Account to Access Notes
+    </p>
+
+    <div class="search-box">
+
+        <input type="text"
+               id="searchNote"
+               placeholder="Search Notes...">
+
+        <button onclick="searchNotes()">
+            🔍 Search
+        </button>
+
+    </div>
+
+    <div class="notes-grid">
+
+        <div class="note-card">
+
+            <div class="note-icon">📘</div>
+
+            <h3>Computer Fundamentals</h3>
+
+            <p>Note ID : CF101</p>
+
+            <button class="view-btn"
+                    onclick="openNote('CF101')">
+                View Notes
+            </button>
+
+        </div>
+
+        <div class="note-card">
+
+            <div class="note-icon">📗</div>
+
+            <h3>MS Word</h3>
+
+            <p>Note ID : WD102</p>
+
+            <button class="view-btn"
+                    onclick="openNote('WD102')">
+                View Notes
+            </button>
+
+        </div>
+
+        <div class="note-card">
+
+            <div class="note-icon">📙</div>
+
+            <h3>MS Excel</h3>
+
+            <p>Note ID : EX202</p>
+
+            <button class="view-btn"
+                    onclick="openNote('EX202')">
+                View Notes
+            </button>
+
+        </div>
+
+        <div class="note-card">
+
+            <div class="note-icon">📕</div>
+
+            <h3>Tally Prime</h3>
+
+            <p>Note ID : TP301</p>
+
+            <button class="view-btn"
+                    onclick="openNote('TP301')">
+                View Notes
             </button>
 
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT -->
+</section>
 
-    <script>
+<!-- ================= REGISTER POPUP ================= -->
 
-        // =========================
-        // HERO SLIDER
-        // =========================
+<div class="popup" id="registerBox">
 
-        const data = [
+    <div class="popup-content">
 
-            {
-                image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop",
+        <span class="close-btn"
+              onclick="closeRegister()">&times;</span>
 
-                title:"Learn Computer Skills Easily 💻",
+        <h2>Create Student Account</h2>
 
-                desc:"PGDCA | ADCA | DCA | Professional Training"
-            },
+        <input type="text"
+               id="studentName"
+               placeholder="Full Name">
 
-            {
-                image:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop",
+        <input type="email"
+               id="studentEmail"
+               placeholder="Email Address">
 
-                title:"Professional Courses 🚀",
+        <input type="password"
+               id="studentPassword"
+               placeholder="Create Password">
 
-                desc:"Excel | Tally | Photoshop | Web Design"
-            },
+        <input type="text"
+               id="otpInput"
+               placeholder="Enter OTP">
 
-            {
-                image:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
+        <button onclick="sendOTP()">
+            Send OTP
+        </button>
 
-                title:"Build Your Bright Career ✨",
+        <button onclick="verifyOTP()">
+            Verify OTP & Register
+        </button>
 
-                desc:"Join ECE Computer Center Today"
-            }
+        <hr>
 
-        ];
+        <button class="google-btn"
+                onclick="googleLogin()">
+            Continue with Google
+        </button>
 
-        let slider =
-        document.getElementById("slider");
+    </div>
 
-        data.forEach((item, i)=>{
+</div>
 
-            slider.innerHTML += `
+<!-- ================= NOTE ID POPUP ================= -->
 
-            <div class="slide ${i===0 ? 'active' : ''}">
+<div class="popup" id="noteBox">
 
-                <img src="${item.image}">
+    <div class="popup-content">
 
-                <div class="overlay"></div>
+        <span class="close-btn"
+              onclick="closeNoteBox()">&times;</span>
 
-                <div class="text">
+        <h2>Open Notes</h2>
 
-                    <h1>${item.title}</h1>
+        <input type="text"
+               id="noteInput"
+               placeholder="Enter Note ID">
 
-                    <p>${item.desc}</p>
+        <button onclick="checkNote()">
+            Open Note
+        </button>
 
-                    <button class="btn">
+    </div>
 
-                        Enroll Now
+</div>
+    <!-- ================= GALLERY ================= -->
 
-                    </button>
+<section class="gallery" id="gallery">
 
-                </div>
+    <h2 class="section-title">Gallery</h2>
 
-            </div>
+    <p class="section-subtitle">
+        Some Moments from ECE Computer Center
+    </p>
 
-            `;
+    <div class="gallery-grid">
 
-        });
+        <img src="images/gallery1.jpg" alt="Gallery 1">
+        <img src="images/gallery2.jpg" alt="Gallery 2">
+        <img src="images/gallery3.jpg" alt="Gallery 3">
+        <img src="images/gallery4.jpg" alt="Gallery 4">
+        <img src="images/gallery5.jpg" alt="Gallery 5">
+        <img src="images/gallery6.jpg" alt="Gallery 6">
 
-        let slides =
-        document.querySelectorAll(".slide");
+    </div>
 
-        let index = 0;
+</section>
 
-        function showSlide(){
+<!-- ================= ABOUT ================= -->
 
-            slides.forEach(slide=>{
+<section class="about" id="about">
 
-                slide.classList.remove("active");
+    <h2 class="section-title">About ECE Computer Center</h2>
 
-            });
+    <p class="about-text">
+        ECE Computer Center provides professional computer education with
+        practical training. We offer courses like PGDCA, ADCA, DCA,
+        Advanced Excel, Tally Prime, MS Office and many more. Our goal is
+        to help students build strong computer skills for education,
+        employment and business.
+    </p>
 
-            slides[index]
-            .classList.add("active");
+</section>
 
-        }
+<!-- ================= CONTACT ================= -->
 
-        setInterval(()=>{
+<section class="contact" id="contact">
 
-            index++;
+    <h2 class="section-title">Contact Us</h2>
 
-            if(index >= slides.length){
+    <div class="contact-info">
 
-                index = 0;
+        <p>📞 +91 8453670810</p>
 
-            }
+        <p>📞 +91 6000181843</p>
 
-            showSlide();
+        <p>📧 ececomputercenter@gmail.com</p>
 
-        },4000);
+        <p>📍 Kalapani, Baksa, Assam</p>
 
-        // =========================
-        // MOBILE MENU
-        // =========================
+    </div>
 
-        function toggleMenu(){
+    <div class="map">
 
-            document.getElementById("mobileMenu")
-            .classList.toggle("show");
+        <iframe
+            src="https://www.google.com/maps?q=Kalapani%20Baksa%20Assam&output=embed"
+            width="100%"
+            height="350"
+            style="border:0;"
+            loading="lazy">
+        </iframe>
 
-        }
+    </div>
 
-        // =========================
-        // ACCOUNT SYSTEM
-        // =========================
+</section>
 
-        let currentNote = "";
+<!-- ================= WHATSAPP ================= -->
 
-        function openNote(noteId){
+<a href="https://wa.me/918453670810"
+   class="whatsapp"
+   target="_blank">
 
-            currentNote = noteId;
+    💬
 
-            let account =
-            localStorage.getItem("students");
+</a>
 
-            if(!account){
+<!-- ================= FOOTER ================= -->
 
-                document.getElementById("registerBox")
-                .style.display = "flex";
+<footer>
 
-            }
+    <p>
+        © 2026 ECE Computer Center. All Rights Reserved.
+    </p>
 
-            else{
+    <p>
+        Designed by Gokul Basumatary
+    </p>
 
-                document.getElementById("noteBox")
-                .style.display = "flex";
+</footer>
 
-            }
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-        }
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+</script>
 
-        // =========================
-        // CREATE ACCOUNT
-        // =========================
-
-        function createAccount(){
-
-            let name =
-            document.getElementById("studentName")
-            .value;
-
-            let email =
-            document.getElementById("studentEmail")
-            .value;
-
-            let password =
-            document.getElementById("studentPassword")
-            .value;
-
-            if(name === "" ||
-               email === "" ||
-               password === ""){
-
-                alert("Please fill all fields ❌");
-
-                return;
-
-            }
-
-            let students =
-            JSON.parse(localStorage.getItem("students"))
-            || [];
-
-            let studentData = {
-
-                name:name,
-                email:email,
-                password:password
-
-            };
-
-            students.push(studentData);
-
-            localStorage.setItem(
-
-                "students",
-
-                JSON.stringify(students)
-
-            );
-
-            alert(
-                "Account Created Successfully ✅"
-            );
-
-            closeRegister();
-
-            document.getElementById("noteBox")
-            .style.display = "flex";
-
-        }
-
-        // =========================
-        // CHECK NOTE ID
-        // =========================
-
-        function checkNote(){
-
-            let enteredId =
-            document.getElementById("noteInput")
-            .value;
-
-            if(enteredId === currentNote){
-
-                alert(
-                    "Opening Notes : " + currentNote
-                );
-
-                window.location.href =
-
-                "notes/" + currentNote + ".html";
-
-            }
-
-            else{
-
-                alert("Invalid Note ID ❌");
-
-            }
-
-        }
-
-        // =========================
-        // SHOW STUDENTS
-        // =========================
-
-        function showStudents(){
-
-            let students =
-            JSON.parse(localStorage.getItem("students"))
-            || [];
-
-            let table =
-            document.getElementById("studentTable");
-
-            table.innerHTML = "";
-
-            students.forEach(student => {
-
-                table.innerHTML += `
-
-                <tr>
-
-                    <td>${student.name}</td>
-
-                    <td>${student.email}</td>
-
-                    <td>${student.password}</td>
-
-                </tr>
-
-                `;
-
-            });
-
-            document.getElementById("studentData")
-            .style.display = "block";
-
-        }
-
-        // =========================
-        // CLOSE REGISTER
-        // =========================
-
-        function closeRegister(){
-
-            document.getElementById("registerBox")
-            .style.display = "none";
-
-        }
-
-        // =========================
-        // CLOSE NOTE BOX
-        // =========================
-
-        function closeNoteBox(){
-
-            document.getElementById("noteBox")
-            .style.display = "none";
-
-        }
-
-    </script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
