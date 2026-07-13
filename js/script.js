@@ -25,6 +25,10 @@ function toggleMenu() {
 
 }
 
+
+
+
+
 function closeMenu() {
 
     mobileMenu.classList.remove("show");
